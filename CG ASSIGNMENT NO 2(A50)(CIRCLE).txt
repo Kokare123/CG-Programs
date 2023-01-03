@@ -1,0 +1,52 @@
+#include<graphics.h>
+#include<iostream>
+#include<math.h>
+using namespace std;
+void circlebres(float x1,float y1,float r)
+{
+		float x,y,p;
+		x=0;
+		y=r;
+		p=3-(2*r); //initial decision parameter.
+		while(x<=y)
+		{
+			putpixel(x1+x,y1+y,WHITE); //DRAWING PIXEL IN EACH OCTANT
+			putpixel(x1-x,y1+y,WHITE);
+			putpixel(x1+x,y1-y,WHITE);
+			putpixel(x1-x,y1-y,WHITE);
+			putpixel(x1+y,y1+x,WHITE);
+			putpixel(x1+y,y1-x,WHITE);
+			putpixel(x1-y,y1+x,WHITE);
+			putpixel(x1-y,y1-x,WHITE);
+			
+			x=x+1;
+			
+			if(p<0)
+			{
+				p=p+4*(x)+6;
+			}
+			else
+			{
+				p = p+4*(x-y)+10;
+				y=y-1;
+			}
+			delay(40);
+				
+		}
+}
+int main()
+{
+	int xc,yc,r;
+	
+	cout<<"Enter the centre coordinate=";
+	cin>>xc>>yc;
+	cout<<"Enter the radius=";
+	cin>>r;
+	
+	int gd=DETECT, gm=DETECT;
+	initgraph(&gd,&gm,NULL);
+	circlebres(xc,yc,r);
+	
+delay(10000);
+	closegraph();
+}
